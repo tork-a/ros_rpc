@@ -1,15 +1,15 @@
 -----------------------------------------------------------------
-ros_rpc (HSR RPC (Remote Procedure Call)) ROS package
+ros_rpc (RPC (Remote Procedure Call)) ROS package
 -----------------------------------------------------------------
 
 Insall
 ------
 
-Mkae sure `hsr_rpc_msgs` and `ros_rpc` packages are under you catkin workspace and build them by something like:
+Mkae sure `baxter_rpc_msgs` and `ros_rpc` packages are under you catkin workspace and build them by something like:
 
 ::
 
-  mv hsr_rpc_msgs ros_rpc %YOUR_CATKIN_WS%/src
+  mv baxter_rpc_msgs ros_rpc %YOUR_CATKIN_WS%/src
   cd %YOUR_CATKIN_WS%
   rosdep install -r -y --from-paths src --ignore-src
   catkin build ros_rpc
