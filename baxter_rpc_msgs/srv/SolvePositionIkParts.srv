@@ -12,7 +12,7 @@ string body_part
 # Endpoint Pose(s) to request Inverse-Kinematics joint solutions for.
 # This is copied from baxter_core_msgs/SolvePositionIK. If in the future we'll 
 # figure out how to import SolvePositionIK, then remove pose_stamp line here.   
-geometry_msgs/PoseStamped[] pose_stamp
+geometry_msgs/Pose pose
 
 ---
 #Response definition

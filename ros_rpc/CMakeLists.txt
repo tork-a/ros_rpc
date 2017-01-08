@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(ros_rpc)
 
-find_package(catkin REQUIRED COMPONENTS rostest)
+find_package(catkin REQUIRED COMPONENTS baxter_rpc_msgs rostest)
 
 catkin_python_setup()
 
@@ -10,11 +10,6 @@ catkin_package(
 #  LIBRARIES ros_rpc
 #  CATKIN_DEPENDS rpc_msgs
 #  DEPENDS system_lib
-)
-
-install(TARGETS python_module_library
-    ARCHIVE DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
-    LIBRARY DESTINATION ${CATKIN_PACKAGE_PYTHON_DESTINATION}
 )
 
 #############

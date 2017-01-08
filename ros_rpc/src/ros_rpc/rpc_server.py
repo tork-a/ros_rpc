@@ -15,12 +15,7 @@
 # limitations under the License.
 
 import actionlib
-from baxter_core_msgs.srv import (
-    SolvePositionIK,
-    SolvePositionIKRequest,
-)
 import genpy
-from geometry_msgs.msg import Pose, Quaternion
 import rospy
 
 
@@ -39,13 +34,6 @@ class ActionServiceInfo(object):
         self.action_server = action_server  # Public
 
 
-class ActionServiceNameDict(object):
-    '''
-    Static, entity class to hold name for ROS Actions for the robot.
-    '''
-    omni_ik = 'srv_ik'
-
-
 class RosRpcServer(object):
     '''
     RPC (Remote Procedure Call) for methods in HSR class.
@@ -53,42 +41,35 @@ class RosRpcServer(object):
     def _shutdown_hook(self):
         print "ROS RPC Server is shutting down."
 
-    def __init__(self):
+    def __init__(self, action_service_info, server_node_name=''):
         '''
-        @param args: TODO
+        @param action_service_info: Dict of ActionServiceInfo. Example format:
+
+            action_infos = {
+                ActionServiceNameDict.omni_base_get_pose: ActionServiceInfo(
+                                                             ActionServiceNameDict.omni_base_get_pose,
+                                                             srvs.OmnibaseGetPose,
+                                                             self._cb_omni_base_get_pose)
+            }
         '''
         # Dict to hold ActionServiceInfo instances.
-        self.action_infos = {
-            ActionServiceNameDict.omni_base_get_pose: ActionServiceInfo(ActionServiceNameDict.omni_base_get_pose,
-                                                                        srvs.OmnibaseGetPose,
-                                                                        self._cb_omni_base_get_pose)
-            }
+        self.action_infos = action_service_info
 
-        # We need to keep hsrb_interface.Robot class running by something
-        # like the following (using "with" keyword). Otherwise ROS node
-        # finishes despite rospy.spin() calls. Not sure why but this is
-        # how ihsrb does.
-        with Robot() as robot:
-            self._whole_body = robot.try_get('whole_body')
-            self._omni_base = robot.try_get('omni_base')
-            self._collision_world = robot.try_get('global_collision_world')
-            self._suction = robot.try_get('suction')
-            self._gripper = robot.try_get('gripper')
-            self._wrist_wrench = robot.try_get('wrist_wrench')
-            self._marker = robot.try_get('marker')
-            self._battery = robot.try_get('battery')
-            self._tts = robot.try_get('default_tts')
+        if server_node_name:
+            # Only when node name is not None or zero length, run init_node
+            # here. Otherwise it might be run in the derived class.
+            rospy.init_node(server_node_name)
 
-            # Initialize action servers
-            self._init_actionservers_batch(self.action_infos)
+        # Initialize action servers
+        self._init_actionservers_batch(self.action_infos)
 
-            rospy.on_shutdown(self._shutdown_hook)
-            rate = rospy.Rate(5.0)
-            ticking = 0
-            while not rospy.is_shutdown():
-                rospy.logdebug('RPC server running: {}'.format(ticking))
-                ticking += 1
-                rate.sleep()
+        rospy.on_shutdown(self._shutdown_hook)
+        rate = rospy.Rate(5.0)
+        ticking = 0
+        while not rospy.is_shutdown():
+            rospy.logdebug('RPC server running: {}'.format(ticking))
+            ticking += 1
+            rate.sleep()
 
     def _init_actionservers_batch(self, action_info_list):
         '''
@@ -133,55 +114,3 @@ class RosRpcServer(object):
 
         action_info.action_server = _aserver
         return action_info
-
-    def _cb_move_to_neutral(self, goal):
-        '''
-        Because whole_body.move_to_neutral() is preemptable by simply killing
-        the command's execution, it's worth calling it via ROS Action.
-        '''
-        rospy.loginfo('IN _cb_move_to_neutral. goal: []'.format(goal.time))
-        _result = msgs.MoveToNeutralResult()
-        _action_info = self.action_infos[ActionServiceNameDict.move_to_neutral]
-        _aserver = _action_info.action_server
-        # check that preempt has not been requested by the client
-        if _aserver.is_preempt_requested():
-            rospy.loginfo('%s: Preempted' % _action_info.action_name)
-            _aserver.set_preempted()
-            _result.res = False
-        _res_from_remote = self._whole_body.move_to_neutral()
-
-        _result.res = True
-        _aserver.set_succeeded(_result)
-
-    def _cb_omni_base_go(self, goal):
-        _result = msgs.OmnibaseGoActionResult()
-        _action_info = self.action_infos[ActionServiceNameDict.omni_base_go]
-        _aserver = _action_info.action_server
-        # check that preempt has not been requested by the client
-        if _aserver.is_preempt_requested():
-            rospy.loginfo('%s: Preempted' % _action_info.action_name)
-            _aserver.set_preempted()
-            _result.res = False
-        _res_from_remote = self._omni_base.go(goal.x, goal.y, goal.theta, goal.timeout, goal.relative)
-
-        _result.res = True
-        _aserver.set_succeeded(_result)
-
-    def _cb_omni_base_get_pose(self, service_req):
-        if not service_req.ref_frame_id:
-            pos, orientation_hsr = self._omni_base.get_pose('map')
-        else:
-            pos, orientation_hsr = self._omni_base.get_pose(service_req.ref_frame_id)
-
-        # Screw a non-standard hsrb_interface.geometry.Quaternion class usage,
-        # which orientation returned by get_pose is implemented with.
-        orientation = Quaternion(orientation_hsr.x, orientation_hsr.y,
-                                 orientation_hsr.z, orientation_hsr.w)
-        return srvs.OmnibaseGetPoseResponse(Pose(pos, (orientation)))
-
-    def get_pose(self, limb):
-        '''
-        Running internally the code in http://sdk.rethinkrobotics.com/wiki/IK_Service_-_Code_Walkthrough
-
-        @param limb: str 'left' or 'right'
-        '''

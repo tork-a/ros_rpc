@@ -13,6 +13,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>baxter_core_msgs</run_depend>
   <run_depend>baxter_interface</run_depend>
+  <run_depend>baxter_rpc_msgs</run_depend>
   <run_depend>geometry_msgs</run_depend>
   <run_depend>std_msgs</run_depend>
   <test_depend>rostest</test_depend>

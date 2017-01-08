@@ -15,8 +15,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from ros_rpc.rpc_server import HsrRpcServer
+from ros_rpc.baxter_rpc_server import BaxterRpcServer
 
 
 if __name__ == '__main__':
-    server = HsrRpcServer()
+    server = BaxterRpcServer()

@@ -15,26 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from geometry_msgs.msg import (
-    PoseStamped,
-    Pose,
-    Point,
-    Quaternion,
-)
-import rospy
-from std_msgs.msg import Header 
+from ros_rpc.sample_baxter import SampleBaxterRpc
 
-from ros_rpc.rpc import RosRpcServer
-
-
-class SampleRosRpc(object):
-    '''
-    RPC sample methods for Baxter. Intended to be called from main method
-    within this same python file.
-    '''
-
-    def __init__(self):
-        '''        '''
-        # Start an action server that handles various ROS Actions.
-        rospy.init_node('baxter_rpc_sample')
-
+if __name__ == '__main__':
+    sample_rpc = SampleBaxterRpc()

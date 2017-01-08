@@ -9,12 +9,9 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
-add_service_files(DIRECTORY srv)
- 
-add_action_files(
-  DIRECTORY action
-  #FILES MoveToNeutral.action  # Looks like without FILES directive all files found get compiled, which is nice.   
-)
+add_service_files(DIRECTORY srv)  #FILES MoveToNeutral.action  # Looks like without FILES directive all files found get compiled, which is nice.   
+
+#add_action_files(DIRECTORY action)
 
 generate_messages(DEPENDENCIES
   actionlib_msgs

@@ -45,4 +45,12 @@ Run sample remote invocations
 * sample_rpc.sample_omni_base_go: ROS Action
 * sample_rpc.sample_omni_base_get_pose: ROS Service
 
+Troubleshooting
+---------------
+
+IK failure with "[/ExternalTools/left/PositionKinematicsNode/IKService] responded with an error"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure Gazebo launch is run from a terminal where `baxter.sh sim` was already run properly.
+
 EoF
