@@ -2,20 +2,33 @@
 <package>
   <name>ros_rpc</name>
   <version>0.0.0</version>
-  <description>This package provides abstract RPC (Remote Procedure Call) structure for derived packages for robot operation.</description>
+  <description>
+  This package provides abstract RPC (Remote Procedure Call) structure for
+  higher level of robot operations for the ROS-based robots.
+  
+  Some ROS-based robots come with higher level of convenient operation
+  interface (e.g. often written in Python) where robot operators can call
+  complicated tasks by a single command. "RPC" here enables interacting with
+  those commands via ROS Topic/Service/Action from remote nodes.   
+  </description>
 
   <author email="dev@opensource-robotics.tokyo.jp">TORK</author>
+  <author email="iiysaito@opensource-robotics.tokyo.jp">Isaac I. Y. Saito</author>
   <maintainer email="dev@opensource-robotics.tokyo.jp">TORK</maintainer>
 
   <license>Apache License 2.0</license>
 
-  <!-- <url type="website">http://wiki.ros.org/ros_rpc</url> -->
+  <url type="website">http://wiki.ros.org/ros_rpc</url>
+  <url type="repository">https://github.com/tork-a/ros_rpc</url>
+  <url type="bugtracker">https://github.com/tork-a/ros_rpc/issues</url>
+
   <buildtool_depend>catkin</buildtool_depend>
-  <run_depend>baxter_core_msgs</run_depend>
-  <run_depend>baxter_interface</run_depend>
-  <run_depend>baxter_rpc_msgs</run_depend>
+  <run_depend>actionlib</run_depend>
+  <run_depend>genpy</run_depend>
   <run_depend>geometry_msgs</run_depend>
+  <run_depend>rospy</run_depend>
   <run_depend>std_msgs</run_depend>
   <test_depend>rostest</test_depend>
+  
   <export />
 </package>
