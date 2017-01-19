@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>ros_rpc</name>
-  <version>0.0.0</version>
+  <version>0.0.1</version>
   <description>
   This package provides abstract RPC (Remote Procedure Call) structure for
   higher level of robot operations for the ROS-based robots.
