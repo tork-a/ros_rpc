@@ -1,0 +1,11 @@
+<launch>
+  <include file="$(find hsrb_gazebo_launch)/launch/hsrb_empty_world.launch" >
+    <!-- <arg name="gui" value="false" />  --> <!-- This is not supported yet. Asked https://qa.hsr.io/ja/question/646/gazebo-no-gui-wofei-biao-shi-nishitai/ -->
+    <arg name="paused" value="false" />
+    <arg name="rviz" value="false" />
+  </include>
+
+  <node pkg="tork_rpc_util" type="rpc_server_script.py" name="hsr_rpc_server" respawn="true" /> 
+
+  <test pkg="tork_rpc_util" type="test_hsr_rpc.py" test-name="test_hsr_rpc" time-limit="3000" />
+</launch>
