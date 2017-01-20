@@ -1,0 +1,19 @@
+# This file is primarilly intended for the users who want to use tork_rpc_apps from source.
+# Used with wstool, users can download source of all related packages.
+- git:
+    local-name: tork_rpc
+    uri: https://github.com/tork-a/tork_rpc.git
+    version: master
+- git:
+    local-name: baxter_app_rpc
+    uri: https://github.com/tork-a/baxter_app_rpc.git
+    version: master
+- git:
+    local-name: rtmros_hironx
+    uri: https://github.com/start-jsk/rtmros_hironx.git
+    version: indigo-devel
+# TODO Decide repo URL. It should be on HSR community GitLab. 
+#- git:
+#    local-name: hsr_rpc
+#    uri: http://xxx
+#    version: master

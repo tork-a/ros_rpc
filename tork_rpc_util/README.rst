@@ -1,5 +1,5 @@
 ========================================================================
-ros_rpc (RPC (Remote Procedure Call)) ROS package
+tork_rpc_util (RPC (Remote Procedure Call)) ROS package
 ========================================================================
 
 Install

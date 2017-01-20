@@ -34,7 +34,7 @@ class ActionServiceInfo(object):
         self.action_server = action_server  # Public
 
 
-class RosRpcServer(object):
+class RpcServersHandler(object):
     '''
     RPC (Remote Procedure Call) for methods in HSR class.
     '''
