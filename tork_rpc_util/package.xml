@@ -11,10 +11,8 @@
   complicated tasks by a single command. "RPC" here enables interacting with
   those commands via ROS Topic/Service/Action from remote nodes.   
   </description>
-
-  <author email="dev@opensource-robotics.tokyo.jp">TORK</author>
   <author email="iiysaito@opensource-robotics.tokyo.jp">Isaac I. Y. Saito</author>
-  <maintainer email="dev@opensource-robotics.tokyo.jp">TORK</maintainer>
+  <maintainer email="dev@opensource-robotics.tokyo.jp">Keio University Yamaguchi Lab</maintainer>
 
   <license>Apache License 2.0</license>
 
