@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>tork_rpc_util</name>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <description>
   This package provides abstract RPC (Remote Procedure Call) structure for
   higher level of robot operations for the ROS-based robots.
