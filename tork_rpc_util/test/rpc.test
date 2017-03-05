@@ -1,6 +1,7 @@
 <launch>
-  <include file="$(find hsrb_gazebo_launch)/launch/hsrb_empty_world.launch" >
-    <!-- <arg name="gui" value="false" />  --> <!-- This is not supported yet. Asked https://qa.hsr.io/ja/question/646/gazebo-no-gui-wofei-biao-shi-nishitai/ -->
+  <!-- TODO Needs to make these functional. -->
+  <include file="$(find baxter_gazebo_launch)/launch/baxter_empty_world.launch" >
+    <!-- <arg name="gui" value="false" />  -->
     <arg name="paused" value="false" />
     <arg name="rviz" value="false" />
   </include>

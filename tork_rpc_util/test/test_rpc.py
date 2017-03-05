@@ -25,7 +25,7 @@ from tork_rpc_util.sample import SampleRosRpc
 PKG = 'tork_rpc_util'
 
 
-class TestRosRpc(unittest.TestCase):
+class TestTorkRpc(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -47,20 +47,7 @@ class TestRosRpc(unittest.TestCase):
         #       always fails thus this test never passes. 
         self.assertTrue(self.sample_rpc.sample_omni_base_go())
 
-    def test_omni_base_get_pose(self):
-        '''
-        Test criteria: The ROS Service return value contains a valid 
-                       geometry_msgs/Pose instance.
-                       Since robot can be anywhere, the values can be anything.
-                       Each value can even be 0.0.
-        '''
-        try:
-            pose = self.sample_rpc.sample_omni_base_get_pose()
-            self.assertTrue(isinstance(pose, Pose))
-        except rospy.ServiceException, e:
-            print "Service call failed: %s"%e
-
 if __name__ == '__main__':
     import rostest
-    rostest.rosrun(PKG, 'test_hsr_rpc', TestRosRpc) 
+    rostest.rosrun(PKG, 'test_baxter_rpc', TestRosRpc) 
 
