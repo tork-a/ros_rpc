@@ -17,7 +17,6 @@
   <url type="bugtracker">https://github.com/tork-a/tork_rpc/issues</url>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <run_depend>tork_rpc_apps</run_depend>
   <run_depend>tork_rpc_util</run_depend>
 
   <export>
