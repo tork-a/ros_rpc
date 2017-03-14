@@ -13,7 +13,8 @@
     uri: https://github.com/tork-a/baxter_interface.git
     local-name: tork-a/baxter_interface
     version: impr/add/cartesiancommand
-- git:
-    uri: https://git.hsr.io/isao_saito/hsr_rpc.git
-    local-name: tork-a/hsr_rpc
-    version: master
+# wstool seems able to access private repo via ssh only (http://answers.ros.org/question/213280/wstool-user-and-password/) but then git.hsr.io may not be accessible via ssh (https://qa.hsr.io/ja/question/267/githsrio-nikomandoraindeakusesurushou-shun/). So until the issue resolved this entry is commented out.
+#- git:
+#    uri: git@git.hsr.io:isao_saito/hsr_rpc.git
+#    local-name: tork-a/hsr_rpc
+#    version: master
