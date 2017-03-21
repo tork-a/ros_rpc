@@ -10,6 +10,10 @@
     local-name: start-jsk/rtmros_hironx
     version: indigo-devel
 - git:
+    uri: https://github.com/tork-a/baxter_app_rpc.git
+    local-name: tork-a/baxter_app_rpc
+    version: master
+- git:
     uri: https://github.com/tork-a/baxter_interface.git
     local-name: tork-a/baxter_interface
     version: impr/add/cartesiancommand
