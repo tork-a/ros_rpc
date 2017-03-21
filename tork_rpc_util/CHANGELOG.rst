@@ -2,6 +2,12 @@
 Changelog for package tork_rpc_util
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add some .msg files.
+* Doc update, cleanup.
+* Contributors: Isaac I.Y. Saito
+
 0.0.3 (2017-03-04)
 ------------------
 
