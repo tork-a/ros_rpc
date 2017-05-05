@@ -84,4 +84,9 @@ Your contribution in any of the following is appreciated!
 * `Report issues <https://github.com/tork-a/tork_rpc/issues>`_
 * Enhancement suggestion `via Github pull request <https://github.com/tork-a/tork_rpc/pulls>`_. 
 
+Acknowledgement
+================
+
+The work initially taken to create this package was sponsored by `Yamaguchi Lab at Keio University <http://www.yamaguti.comp.ae.keio.ac.jp/en/index.en.html>`_.
+
 EoF
